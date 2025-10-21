@@ -1,971 +1,419 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HealthCare - हार्ट अटैक जागरूकता</title>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5770957639804227"
-     crossorigin="anonymous"></script>
-  <style>
-    /* Global Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    body {
-      line-height: 1.6;
-      color: #333;
-      background-color: #f9f9f9;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(135deg, #d32f2f, #b71c1c);
-      padding: 15px 20px;
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    .navbar .logo {
-      font-size: 1.8em;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-    }
-    
-    .logo i {
-      margin-right: 10px;
-      font-size: 1.5em;
-    }
-    
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-    
-    .nav-links li a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 5px 10px;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-    }
-    
-    .nav-links li a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      text-decoration: none;
-    }
-    
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1588776814546-59f622baf77f') center/cover no-repeat;
-      height: 70vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-      padding: 0 20px;
-    }
-    
-    .hero-content {
-      max-width: 800px;
-    }
-    
-    .hero-text h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    
-    .hero-text p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-    }
-    
-    .cta-button {
-      display: inline-block;
-      background-color: #d32f2f;
-      color: white;
-      padding: 12px 30px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1em;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    .cta-button:hover {
-      background-color: #b71c1c;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Content Sections */
-    .content-section {
-      padding: 80px 0;
-    }
-    
-    .section-header {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-    
-    .section-header h2 {
-      color: #d32f2f;
-      font-size: 2.5em;
-      margin-bottom: 15px;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .section-header h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background-color: #d32f2f;
-      border-radius: 2px;
-    }
-    
-    .section-header p {
-      max-width: 700px;
-      margin: 0 auto;
-      color: #666;
-      font-size: 1.1em;
-    }
-    
-    /* First Aid Section */
-    .steps-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
-    
-    .step-card {
-      background: white;
-      border-radius: 10px;
-      padding: 25px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-      border-top: 4px solid #d32f2f;
-    }
-    
-    .step-card:hover {
-      transform: translateY(-10px);
-    }
-    
-    .step-number {
-      display: inline-block;
-      background-color: #d32f2f;
-      color: white;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 40px;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
-    
-    .step-card h3 {
-      color: #d32f2f;
-      margin-bottom: 15px;
-      font-size: 1.3em;
-    }
-    
-    /* Causes Section */
-    .causes-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-    }
-    
-    .cause-item {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      display: flex;
-      align-items: flex-start;
-      transition: all 0.3s ease;
-    }
-    
-    .cause-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    }
-    
-    .cause-icon {
-      background-color: #f5f5f5;
-      color: #d32f2f;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 15px;
-      flex-shrink: 0;
-    }
-    
-    .cause-content h3 {
-      color: #d32f2f;
-      margin-bottom: 10px;
-      font-size: 1.2em;
-    }
-    
-    /* Symptoms Section */
-    .symptoms-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
-    
-    .symptom-card {
-      background: white;
-      border-radius: 10px;
-      padding: 25px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-    
-    .symptom-card:hover {
-      transform: scale(1.05);
-    }
-    
-    .symptom-icon {
-      font-size: 3em;
-      color: #d32f2f;
-      margin-bottom: 20px;
-    }
-    
-    .symptom-card h3 {
-      color: #d32f2f;
-      margin-bottom: 15px;
-    }
-    
-    /* Prevention Section */
-    .prevention-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-    }
-    
-    .prevention-card {
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    
-    .prevention-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
-    
-    .prevention-icon {
-      font-size: 2.5em;
-      color: #d32f2f;
-      margin-bottom: 20px;
-    }
-    
-    .prevention-card h3 {
-      color: #d32f2f;
-      margin-bottom: 15px;
-    }
-    
-    /* Emergency Section */
-    .emergency-section {
-      background: linear-gradient(135deg, #d32f2f, #b71c1c);
-      color: white;
-      padding: 80px 0;
-      text-align: center;
-    }
-    
-    .emergency-section h2 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
-    
-    .emergency-section p {
-      font-size: 1.2em;
-      max-width: 800px;
-      margin: 0 auto 30px;
-    }
-    
-    .emergency-numbers {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      margin-top: 40px;
-    }
-    
-    .emergency-number {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 10px;
-      min-width: 200px;
-      backdrop-filter: blur(10px);
-    }
-    
-    .emergency-number h3 {
-      font-size: 1.5em;
-      margin-bottom: 10px;
-    }
-    
-    .emergency-number p {
-      font-size: 1.3em;
-      font-weight: bold;
-    }
-    
-    /* Contact Section */
-    .contact {
-      background-color: #f5f5f5;
-    }
-    
-    .contact-form {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    .form-group {
-      margin-bottom: 20px;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      color: #555;
-      font-weight: 500;
-    }
-    
-    .form-group input, .form-group textarea {
-      width: 100%;
-      padding: 12px 15px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 1em;
-      transition: border 0.3s ease;
-    }
-    
-    .form-group input:focus, .form-group textarea:focus {
-      border-color: #d32f2f;
-      outline: none;
-    }
-    
-    .submit-btn {
-      background-color: #d32f2f;
-      color: white;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 5px;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      width: 100%;
-    }
-    
-    .submit-btn:hover {
-      background-color: #b71c1c;
-    }
-    
-    /* Footer */
-    footer {
-      background-color: #222;
-      color: white;
-      padding: 50px 0 20px;
-    }
-    
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-    
-    .footer-column h3 {
-      color: #d32f2f;
-      margin-bottom: 20px;
-      font-size: 1.3em;
-    }
-    
-    .footer-links {
-      list-style: none;
-    }
-    
-    .footer-links li {
-      margin-bottom: 10px;
-    }
-    
-    .footer-links a {
-      color: #bbb;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    .footer-links a:hover {
-      color: white;
-    }
-    
-    .social-links {
-      display: flex;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    
-    .social-links a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background-color: #333;
-      color: white;
-      border-radius: 50%;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    
-    .social-links a:hover {
-      background-color: #d32f2f;
-      transform: translateY(-3px);
-    }
-    
-    .copyright {
-      text-align: center;
-      padding-top: 20px;
-      border-top: 1px solid #444;
-      color: #bbb;
-    }
-    
-    /* Back to Top Button */
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background-color: #d32f2f;
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 1.5em;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
-      z-index: 100;
-    }
-    
-    .back-to-top:hover {
-      background-color: #b71c1c;
-      transform: translateY(-5px);
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        padding: 15px;
-      }
-      
-      .nav-links {
-        margin-top: 15px;
-        gap: 15px;
-      }
-      
-      .hero-text h1 {
-        font-size: 2.2em;
-      }
-      
-      .section-header h2 {
-        font-size: 2em;
-      }
-      
-      .emergency-numbers {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">
-      <i class="fas fa-heartbeat"></i> HealthCare
-    </div>
-    <ul class="nav-links">
-      <li><a href="#home">होम</a></li>
-      <li><a href="#first-aid">हार्ट अटैक के कदम</a></li>
-      <li><a href="#symptoms">लक्षण</a></li>
-      <li><a href="#causes">कारण</a></li>
-      <li><a href="#prevention">रोकथाम</a></li>
-      <li><a href="#emergency">आपातकालीन</a></li>
-      <!-- <li><a href="#contact">संपर्क करें</a></li> -->
-    </ul>
-  </nav>
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">
+    <i class="fas fa-heartbeat"></i> HealthCare
+  </div>
+  
+  <div class="menu-toggle" (click)="toggleMenu()" id="mobile-menu">
+    <span [class.active]="isMenuOpen"></span>
+    <span [class.active]="isMenuOpen"></span>
+    <span [class.active]="isMenuOpen"></span>
+  </div>
+  
+  <ul class="nav-links" [class.active]="isMenuOpen" id="nav-links">
+    <li><a href="#home" (click)="closeMenu()">होम</a></li>
+    <li><a href="#first-aid" (click)="closeMenu()">हार्ट अटैक के कदम</a></li>
+    <li><a href="#symptoms" (click)="closeMenu()">लक्षण</a></li>
+    <li><a href="#causes" (click)="closeMenu()">कारण</a></li>
+    <li><a href="#prevention" (click)="closeMenu()">रोकथाम</a></li>
+    <li><a href="#emergency" (click)="closeMenu()">आपातकालीन</a></li>
+  </ul>
+</nav>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1>आपकी सेहत हमारी प्राथमिकता</h1>
-        <p>हार्ट अटैक और अन्य स्वास्थ्य समस्याओं के लिए जानकारी प्राप्त करें</p>
-        <a href="#first-aid" class="cta-button">हार्ट अटैक जानकारी प्राप्त करें</a>
-      </div>
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>आपकी सेहत हमारी प्राथमिकता</h1>
+      <p>हार्ट अटैक और अन्य स्वास्थ्य समस्याओं के लिए जानकारी प्राप्त करें</p>
+      <a href="#first-aid" class="cta-button">हार्ट अटैक जानकारी प्राप्त करें</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- First Aid Section -->
-  <section id="first-aid" class="content-section">
-    <div class="container">
-      <div class="section-header">
-        <h2>हार्ट अटैक आने पर तुरंत उठाने वाले कदम</h2>
-        <p>दिल का दौरा (हार्ट अटैक) आने पर तुरंत कार्रवाई करना जीवन बचा सकता है।</p>
+<!-- Ad after hero section -->
+<div class="container">
+  <div class="ad-container">
+    <div class="ad-label">विज्ञापन</div>
+    <div class="ad-unit">
+      <!-- Ad Unit 1 -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5770957639804227"
+           crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5770957639804227"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+</div>
+
+<!-- First Aid Section -->
+<section id="first-aid" class="content-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>हार्ट अटैक आने पर तुरंत उठाने वाले कदम</h2>
+      <p>दिल का दौरा (हार्ट अटैक) आने पर तुरंत कार्रवाई करना जीवन बचा सकता है।</p>
+    </div>
+    
+    <div class="steps-container">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>शांत रहें और तुरंत मदद लें</h3>
+        <p>सबसे पहले शांत रहें और घबराने की कोशिश न करें। तुरंत एम्बुलेंस या डॉक्टर को कॉल करें। आपातकालीन नंबर 102 या 112 पर कॉल करें।</p>
       </div>
       
-      <div class="steps-container">
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <h3>शांत रहें और तुरंत मदद लें</h3>
-          <p>सबसे पहले शांत रहें और घबराने की कोशिश न करें। तुरंत एम्बुलेंस या डॉक्टर को कॉल करें। आपातकालीन नंबर 102 या 112 पर कॉल करें।</p>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>पीड़ित को आरामदायक स्थिति में रखें</h3>
+        <p>मरीज को आराम से बैठाएं या लेटाएं। सिर और कंधों को थोड़ा ऊपर रखें और पैरों को नीचे रखें। तंग कपड़े ढीले करें ताकि सांस लेने में आसानी हो।</p>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>एस्पिरिन दें (अगर उपलब्ध हो)</h3>
+        <p>अगर मरीज होश में है और चबा सकता है, तो एस्पिरिन की गोली (300mg) दी जा सकती है। यह खून को पतला करके थक्के बनने से रोकती है।</p>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <h3>सीपीआर (CPR) शुरू करें</h3>
+        <p>अगर पीड़ित सांस नहीं ले रहा है या होश में नहीं है, तो तुरंत CPR शुरू करें। 30 छाती दबाने और 2 सांस देने का चक्र दोहराएं।</p>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">5</div>
+        <h3>चिकित्सा सहायता आने तक मरीज को नजर में रखें</h3>
+        <p>मरीज को हमेशा नजर में रखें और मदद आने तक CPR जारी रखें। मरीज की नब्ज और सांस की जांच करते रहें।</p>
+      </div>
+      
+      <div class="step-card">
+        <div class="step-number">6</div>
+        <h3>ऑटोमेटेड एक्सटर्नल डिफिब्रिलेटर (AED) का उपयोग</h3>
+        <p>अगर AED उपलब्ध है, तो उसका उपयोग करें। यह उपकरण दिल की धड़कन को सामान्य करने में मदद कर सकता है।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ad between sections -->
+<div class="container">
+  <div class="ad-container">
+    <div class="ad-label">विज्ञापन</div>
+    <div class="ad-unit">
+      <!-- Ad Unit 2 -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5770957639804227"
+           crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5770957639804227"
+           data-ad-slot="0987654321"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+</div>
+
+<!-- Symptoms Section -->
+<section id="symptoms" class="content-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>हार्ट अटैक के लक्षण</h2>
+      <p>हार्ट अटैक के विभिन्न लक्षणों को पहचानना महत्वपूर्ण है। याद रखें, हर व्यक्ति में अलग-अलग लक्षण हो सकते हैं।</p>
+    </div>
+    
+    <div class="symptoms-container">
+      <div class="symptom-card">
+        <div class="symptom-icon">
+          <i class="fas fa-heart"></i>
         </div>
-        
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <h3>पीड़ित को आरामदायक स्थिति में रखें</h3>
-          <p>मरीज को आराम से बैठाएं या लेटाएं। सिर और कंधों को थोड़ा ऊपर रखें और पैरों को नीचे रखें। तंग कपड़े ढीले करें ताकि सांस लेने में आसानी हो।</p>
+        <h3>सीने में दर्द या बेचैनी</h3>
+        <p>सीने के बीच में दबाव, जकड़न, भारीपन या दर्द महसूस होना जो कुछ मिनटों से अधिक रहे या आए-जाए।</p>
+      </div>
+      
+      <div class="symptom-card">
+        <div class="symptom-icon">
+          <i class="fas fa-lungs"></i>
         </div>
-        
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <h3>एस्पिरिन दें (अगर उपलब्ध हो)</h3>
-          <p>अगर मरीज होश में है और चबा सकता है, तो एस्पिरिन की गोली (300mg) दी जा सकती है। यह खून को पतला करके थक्के बनने से रोकती है।</p>
+        <h3>सांस लेने में तकलीफ</h3>
+        <p>सीने में दर्द के साथ या बिना सांस लेने में कठिनाई होना। यह आराम करते समय या थोड़ी सी शारीरिक गतिविधि के साथ हो सकता है।</p>
+      </div>
+      
+      <div class="symptom-card">
+        <div class="symptom-icon">
+          <i class="fas fa-dizzy"></i>
         </div>
-        
-        <div class="step-card">
-          <div class="step-number">4</div>
-          <h3>सीपीआर (CPR) शुरू करें</h3>
-          <p>अगर पीड़ित सांस नहीं ले रहा है या होश में नहीं है, तो तुरंत CPR शुरू करें। 30 छाती दबाने और 2 सांस देने का चक्र दोहराएं।</p>
+        <h3>चक्कर आना या बेहोशी</h3>
+        <p>अचानक चक्कर आना, हल्का सिर महसूस होना या बेहोश हो जाना। यह दिल के कमजोर पंप करने का संकेत हो सकता है।</p>
+      </div>
+      
+      <div class="symptom-card">
+        <div class="symptom-icon">
+          <i class="fas fa-tint"></i>
         </div>
-        
-        <div class="step-card">
-          <div class="step-number">5</div>
-          <h3>चिकित्सा सहायता आने तक मरीज को नजर में रखें</h3>
-          <p>मरीज को हमेशा नजर में रखें और मदद आने तक CPR जारी रखें। मरीज की नब्ज और सांस की जांच करते रहें।</p>
+        <h3>ठंडा पसीना आना</h3>
+        <p>बिना किसी स्पष्ट कारण के अचानक ठंडा पसीना आना, जो अक्सर सीने में दर्द के साथ होता है।</p>
+      </div>
+      
+      <div class="symptom-card">
+        <div class="symptom-icon">
+          <i class="fas fa-hand-sparkles"></i>
         </div>
-        
-        <div class="step-card">
-          <div class="step-number">6</div>
-          <h3>ऑटोमेटेड एक्सटर्नल डिफिब्रिलेटर (AED) का उपयोग</h3>
-          <p>अगर AED उपलब्ध है, तो उसका उपयोग करें। यह उपकरण दिल की धड़कन को सामान्य करने में मदद कर सकता है।</p>
+        <h3>बांह, पीठ, गर्दन या जबड़े में दर्द</h3>
+        <p>दर्द या बेचैनी जो बाएं या दाएं कंधे, बाजू, पीठ, गर्दन, जबड़े या पेट के ऊपरी हिस्से में फैल सकती है।</p>
+      </div>
+      
+      <div class="symptom-card">
+        <div class="symptom-icon">
+          <i class="fas fa-stomach"></i>
+        </div>
+        <h3>जी मिचलाना या उल्टी</h3>
+        <p>अचानक जी मिचलाना, अपच, या उल्टी होना, विशेष रूप से महिलाओं में यह एक सामान्य लक्षण है।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Causes Section -->
+<section id="causes" class="content-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>हार्ट अटैक के मुख्य कारण</h2>
+      <p>हार्ट अटैक के विभिन्न कारणों को समझना इसके जोखिम को कम करने में मदद कर सकता है।</p>
+    </div>
+    
+    <div class="causes-container">
+      <div class="cause-item">
+        <div class="cause-icon">
+          <i class="fas fa-artery"></i>
+        </div>
+        <div class="cause-content">
+          <h3>धमनियों में रुकावट (Atherosclerosis)</h3>
+          <p>कोलेस्ट्रॉल, वसा और अन्य पदार्थों से बना प्लाक जमने से धमनियाँ संकुचित होती हैं और रक्त प्रवाह बाधित होता है।</p>
+        </div>
+      </div>
+      
+      <div class="cause-item">
+        <div class="cause-icon">
+          <i class="fas fa-tint"></i>
+        </div>
+        <div class="cause-content">
+          <h3>रक्त का थक्का (Blood Clot)</h3>
+          <p>प्लाक टूटने से खून का थक्का बन सकता है जो धमनी को पूरी तरह से अवरुद्ध कर सकता है।</p>
+        </div>
+      </div>
+      
+      <div class="cause-item">
+        <div class="cause-icon">
+          <i class="fas fa-heartbeat"></i>
+        </div>
+        <div class="cause-content">
+          <h3>हाई ब्लड प्रेशर (High Blood Pressure)</h3>
+          <p>लंबे समय तक उच्च ब्लड प्रेशर से धमनियों की दीवारें क्षतिग्रस्त होती हैं और दिल पर दबाव बढ़ता है।</p>
+        </div>
+      </div>
+      
+      <div class="cause-item">
+        <div class="cause-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="cause-content">
+          <h3>कोलेस्ट्रॉल का बढ़ना (High Cholesterol)</h3>
+          <p>LDL (खराब कोलेस्ट्रॉल) बढ़ने से धमनियों में प्लाक जमने का खतरा बढ़ जाता है।</p>
+        </div>
+      </div>
+      
+      <div class="cause-item">
+        <div class="cause-icon">
+          <i class="fas fa-smoking"></i>
+        </div>
+        <div class="cause-content">
+          <h3>धूम्रपान (Smoking)</h3>
+          <p>धमनियों को नुकसान पहुंचाता है, रक्तचाप बढ़ाता है और खून के थक्के बनने का खतरा बढ़ाता है।</p>
+        </div>
+      </div>
+      
+      <div class="cause-item">
+        <div class="cause-icon">
+          <i class="fas fa-syringe"></i>
+        </div>
+        <div class="cause-content">
+          <h3>मधुमेह (Diabetes)</h3>
+          <p>उच्च रक्त शर्करा धमनियों की दीवार को नुकसान पहुंचाती है और हृदय रोग का खतरा बढ़ाती है।</p>
+        </div>
+      </div>
+      
+      <div class="cause-item">
+        <div class="cause-icon">
+          <i class="fas fa-weight"></i>
+        </div>
+        <div class="cause-content">
+          <h3>मोटापा (Obesity)</h3>
+          <p>अतिरिक्त वजन हृदय पर दबाव डालता है और कोलेस्ट्रॉल, रक्तचाप और मधुमेह के जोखिम को बढ़ाता है।</p>
+        </div>
+      </div>
+      
+      <div class="cause-item">
+        <div class="cause-icon">
+          <i class="fas fa-dna"></i>
+        </div>
+        <div class="cause-content">
+          <h3>पारिवारिक इतिहास (Family History)</h3>
+          <p>यदि परिवार में हृदय रोग का इतिहास है, तो हार्ट अटैक का जोखिम बढ़ सकता है।</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Symptoms Section -->
-  <section id="symptoms" class="content-section">
-    <div class="container">
-      <div class="section-header">
-        <h2>हार्ट अटैक के लक्षण</h2>
-        <p>हार्ट अटैक के विभिन्न लक्षणों को पहचानना महत्वपूर्ण है। याद रखें, हर व्यक्ति में अलग-अलग लक्षण हो सकते हैं।</p>
-      </div>
-      
-      <div class="symptoms-container">
-        <div class="symptom-card">
-          <div class="symptom-icon">
-            <i class="fas fa-heart"></i>
-          </div>
-          <h3>सीने में दर्द या बेचैनी</h3>
-          <p>सीने के बीच में दबाव, जकड़न, भारीपन या दर्द महसूस होना जो कुछ मिनटों से अधिक रहे या आए-जाए।</p>
-        </div>
-        
-        <div class="symptom-card">
-          <div class="symptom-icon">
-            <i class="fas fa-lungs"></i>
-          </div>
-          <h3>सांस लेने में तकलीफ</h3>
-          <p>सीने में दर्द के साथ या बिना सांस लेने में कठिनाई होना। यह आराम करते समय या थोड़ी सी शारीरिक गतिविधि के साथ हो सकता है।</p>
-        </div>
-        
-        <div class="symptom-card">
-          <div class="symptom-icon">
-            <i class="fas fa-dizzy"></i>
-          </div>
-          <h3>चक्कर आना या बेहोशी</h3>
-          <p>अचानक चक्कर आना, हल्का सिर महसूस होना या बेहोश हो जाना। यह दिल के कमजोर पंप करने का संकेत हो सकता है।</p>
-        </div>
-        
-        <div class="symptom-card">
-          <div class="symptom-icon">
-            <i class="fas fa-tint"></i>
-          </div>
-          <h3>ठंडा पसीना आना</h3>
-          <p>बिना किसी स्पष्ट कारण के अचानक ठंडा पसीना आना, जो अक्सर सीने में दर्द के साथ होता है।</p>
-        </div>
-        
-        <div class="symptom-card">
-          <div class="symptom-icon">
-            <i class="fas fa-hand-sparkles"></i>
-          </div>
-          <h3>बांह, पीठ, गर्दन या जबड़े में दर्द</h3>
-          <p>दर्द या बेचैनी जो बाएं या दाएं कंधे, बाजू, पीठ, गर्दन, जबड़े या पेट के ऊपरी हिस्से में फैल सकती है।</p>
-        </div>
-        
-        <div class="symptom-card">
-          <div class="symptom-icon">
-            <i class="fas fa-stomach"></i>
-          </div>
-          <h3>जी मिचलाना या उल्टी</h3>
-          <p>अचानक जी मिचलाना, अपच, या उल्टी होना, विशेष रूप से महिलाओं में यह एक सामान्य लक्षण है।</p>
-        </div>
-      </div>
+<!-- Ad between sections -->
+<div class="container">
+  <div class="ad-container">
+    <div class="ad-label">विज्ञापन</div>
+    <div class="ad-unit">
+      <!-- Ad Unit 3 -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5770957639804227"
+           crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5770957639804227"
+           data-ad-slot="1122334455"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- Causes Section -->
-  <section id="causes" class="content-section">
-    <div class="container">
-      <div class="section-header">
-        <h2>हार्ट अटैक के मुख्य कारण</h2>
-        <p>हार्ट अटैक के विभिन्न कारणों को समझना इसके जोखिम को कम करने में मदद कर सकता है।</p>
-      </div>
-      
-      <div class="causes-container">
-        <div class="cause-item">
-          <div class="cause-icon">
-            <i class="fas fa-artery"></i>
-          </div>
-          <div class="cause-content">
-            <h3>धमनियों में रुकावट (Atherosclerosis)</h3>
-            <p>कोलेस्ट्रॉल, वसा और अन्य पदार्थों से बना प्लाक जमने से धमनियाँ संकुचित होती हैं और रक्त प्रवाह बाधित होता है।</p>
-          </div>
-        </div>
-        
-        <div class="cause-item">
-          <div class="cause-icon">
-            <i class="fas fa-tint"></i>
-          </div>
-          <div class="cause-content">
-            <h3>रक्त का थक्का (Blood Clot)</h3>
-            <p>प्लाक टूटने से खून का थक्का बन सकता है जो धमनी को पूरी तरह से अवरुद्ध कर सकता है।</p>
-          </div>
-        </div>
-        
-        <div class="cause-item">
-          <div class="cause-icon">
-            <i class="fas fa-heartbeat"></i>
-          </div>
-          <div class="cause-content">
-            <h3>हाई ब्लड प्रेशर (High Blood Pressure)</h3>
-            <p>लंबे समय तक उच्च ब्लड प्रेशर से धमनियों की दीवारें क्षतिग्रस्त होती हैं और दिल पर दबाव बढ़ता है।</p>
-          </div>
-        </div>
-        
-        <div class="cause-item">
-          <div class="cause-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <div class="cause-content">
-            <h3>कोलेस्ट्रॉल का बढ़ना (High Cholesterol)</h3>
-            <p>LDL (खराब कोलेस्ट्रॉल) बढ़ने से धमनियों में प्लाक जमने का खतरा बढ़ जाता है।</p>
-          </div>
-        </div>
-        
-        <div class="cause-item">
-          <div class="cause-icon">
-            <i class="fas fa-smoking"></i>
-          </div>
-          <div class="cause-content">
-            <h3>धूम्रपान (Smoking)</h3>
-            <p>धमनियों को नुकसान पहुंचाता है, रक्तचाप बढ़ाता है और खून के थक्के बनने का खतरा बढ़ाता है।</p>
-          </div>
-        </div>
-        
-        <div class="cause-item">
-          <div class="cause-icon">
-            <i class="fas fa-syringe"></i>
-          </div>
-          <div class="cause-content">
-            <h3>मधुमेह (Diabetes)</h3>
-            <p>उच्च रक्त शर्करा धमनियों की दीवार को नुकसान पहुंचाती है और हृदय रोग का खतरा बढ़ाती है।</p>
-          </div>
-        </div>
-        
-        <div class="cause-item">
-          <div class="cause-icon">
-            <i class="fas fa-weight"></i>
-          </div>
-          <div class="cause-content">
-            <h3>मोटापा (Obesity)</h3>
-            <p>अतिरिक्त वजन हृदय पर दबाव डालता है और कोलेस्ट्रॉल, रक्तचाप और मधुमेह के जोखिम को बढ़ाता है।</p>
-          </div>
-        </div>
-        
-        <div class="cause-item">
-          <div class="cause-icon">
-            <i class="fas fa-dna"></i>
-          </div>
-          <div class="cause-content">
-            <h3>पारिवारिक इतिहास (Family History)</h3>
-            <p>यदि परिवार में हृदय रोग का इतिहास है, तो हार्ट अटैक का जोखिम बढ़ सकता है।</p>
-          </div>
-        </div>
-      </div>
+<!-- Prevention Section -->
+<section id="prevention" class="content-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>हार्ट अटैक की रोकथाम</h2>
+      <p>जीवनशैली में सकारात्मक बदलाव करके हार्ट अटैक के जोखिम को काफी हद तक कम किया जा सकता है।</p>
     </div>
-  </section>
-
-  <!-- Prevention Section -->
-  <section id="prevention" class="content-section">
-    <div class="container">
-      <div class="section-header">
-        <h2>हार्ट अटैक की रोकथाम</h2>
-        <p>जीवनशैली में सकारात्मक बदलाव करके हार्ट अटैक के जोखिम को काफी हद तक कम किया जा सकता है।</p>
-      </div>
-      
-      <div class="prevention-container">
-        <div class="prevention-card">
-          <div class="prevention-icon">
-            <i class="fas fa-apple-alt"></i>
-          </div>
-          <h3>स्वस्थ आहार</h3>
-          <p>फल, सब्जियां, साबुत अनाज, और कम वसा वाले डेयरी उत्पादों का सेवन करें। संतृप्त वसा, ट्रांस वसा और कोलेस्ट्रॉल सीमित करें।</p>
-        </div>
-        
-        <div class="prevention-card">
-          <div class="prevention-icon">
-            <i class="fas fa-running"></i>
-          </div>
-          <h3>नियमित व्यायाम</h3>
-          <p>प्रतिदिन कम से कम 30 मिनट की मध्यम शारीरिक गतिविधि करें। यह रक्तचाप और कोलेस्ट्रॉल को नियंत्रित रखने में मदद करता है।</p>
-        </div>
-        
-        <div class="prevention-card">
-          <div class="prevention-icon">
-            <i class="fas fa-ban"></i>
-          </div>
-          <h3>धूम्रपान छोड़ें</h3>
-          <p>धूम्रपान हृदय रोग के प्रमुख जोखिम कारकों में से एक है। धूम्रपान छोड़ने से हार्ट अटैक का खतरा कम होता है।</p>
-        </div>
-        
-        <div class="prevention-card">
-          <div class="prevention-icon">
-            <i class="fas fa-weight"></i>
-          </div>
-          <h3>वजन प्रबंधन</h3>
-          <p>स्वस्थ शरीर के वजन को बनाए रखें। अतिरिक्त वजन हृदय पर दबाव डालता है और अन्य जोखिम कारकों को बढ़ाता है।</p>
-        </div>
-        
-        <div class="prevention-card">
-          <div class="prevention-icon">
-            <i class="fas fa-tint"></i>
-          </div>
-          <h3>रक्तचाप नियंत्रण</h3>
-          <p>नियमित रूप से रक्तचाप की जांच करें और इसे नियंत्रित रखने के लिए आवश्यक कदम उठाएं।</p>
-        </div>
-        
-        <div class="prevention-card">
-          <div class="prevention-icon">
-            <i class="fas fa-heartbeat"></i>
-          </div>
-          <h3>तनाव प्रबंधन</h3>
-          <p>तनाव हृदय रोग के जोखिम को बढ़ा सकता है। योग, ध्यान और अन्य विश्राम तकनीकों का अभ्यास करें।</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Emergency Section -->
-  <section id="emergency" class="emergency-section">
-    <div class="container">
-      <h2>आपातकालीन स्थिति में क्या करें</h2>
-      <p>यदि आपको या आपके आसपास किसी को हार्ट अटैक के लक्षण दिखाई देते हैं, तो तुरंत कार्रवाई करें। हर मिनट मायने रखता है।</p>
-      
-      <div class="emergency-numbers">
-        <div class="emergency-number">
-          <h3>एम्बुलेंस</h3>
-          <p>102</p>
-        </div>
-        <div class="emergency-number">
-          <h3>आपातकालीन सेवाएं</h3>
-          <p>112</p>
-        </div>
-        <div class="emergency-number">
-          <h3>हेल्पलाइन</h3>
-          <p>108</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section
-  <section id="contact" class="content-section contact">
-    <div class="container">
-      <div class="section-header">
-        <h2>संपर्क करें</h2>
-        <p>अधिक जानकारी या सहायता के लिए हमसे संपर्क करें। हम आपकी मदद करने के लिए यहां हैं।</p>
-      </div>
-      
-      <div class="contact-form">
-        <form id="contactForm">
-          <div class="form-group">
-            <label for="name">आपका नाम</label>
-            <input type="text" id="name" placeholder="आपका पूरा नाम" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="email">ईमेल</label>
-            <input type="email" id="email" placeholder="आपका ईमेल पता" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="phone">फोन नंबर</label>
-            <input type="tel" id="phone" placeholder="आपका फोन नंबर">
-          </div>
-          
-          <div class="form-group">
-            <label for="message">संदेश</label>
-            <textarea id="message" rows="5" placeholder="आपका संदेश यहाँ लिखें" required></textarea>
-          </div>
-          
-          <button type="submit" class="submit-btn">संदेश भेजें</button>
-        </form>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-column">
-          <h3>HealthCare</h3>
-          <p>आपकी सेहत हमारी प्राथमिकता। हम हृदय स्वास्थ्य और समग्र कल्याण के बारे में जागरूकता बढ़ाने के लिए प्रतिबद्ध हैं।</p>
-          <!-- <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-          </div> -->
-        </div>
-        
-        <div class="footer-column">
-          <h3>त्वरित लिंक</h3>
-          <ul class="footer-links">
-            <li><a href="#home">होम</a></li>
-            <li><a href="#first-aid">हार्ट अटैक के कदम</a></li>
-            <li><a href="#symptoms">लक्षण</a></li>
-            <li><a href="#causes">कारण</a></li>
-            <li><a href="#prevention">रोकथाम</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-column">
-          <h3>संपर्क जानकारी</h3>
-          <ul class="footer-links">
-            <li><i class="fas fa-map-marker-alt"></i> 123 स्वास्थ्य मार्ग, नई दिल्ली</li>
-            <li><i class="fas fa-phone"></i> +91 98765 43210</li>
-            <li><i class="fas fa-envelope"></i> info@healthcare.com</li>
-          </ul>
-        </div>
-        
-        <!-- <div class="footer-column">
-          <h3>न्यूज़लेटर</h3>
-          <p>नवीनतम स्वास्थ्य जानकारी और टिप्स प्राप्त करने के लिए सदस्यता लें।</p>
-          <form class="newsletter-form">
-            <input type="email" placeholder="आपका ईमेल" required>
-            <button type="submit" class="submit-btn">सब्सक्राइब</button>
-          </form>
-        </div> -->
-      </div>
-      
-      <div class="copyright">
-        <p>&copy; 2025 HealthCare. सर्वाधिकार सुरक्षित।</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Back to Top Button -->
-  <a href="#home" class="back-to-top">
-    <i class="fas fa-arrow-up"></i>
-  </a>
-
-  <script>
-    // Form submission handler
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      alert('धन्यवाद! हम शीघ्र ही आपसे संपर्क करेंगे।');
-      this.reset();
-    });
     
-    // Newsletter form submission
-    document.querySelector('.newsletter-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      alert('धन्यवाद! आपने सफलतापूर्वक सदस्यता ले ली है।');
-      this.reset();
-    });
+    <div class="prevention-container">
+      <div class="prevention-card">
+        <div class="prevention-icon">
+          <i class="fas fa-apple-alt"></i>
+        </div>
+        <h3>स्वस्थ आहार</h3>
+        <p>फल, सब्जियां, साबुत अनाज, और कम वसा वाले डेयरी उत्पादों का सेवन करें। संतृप्त वसा, ट्रांस वसा और कोलेस्ट्रॉल सीमित करें।</p>
+      </div>
+      
+      <div class="prevention-card">
+        <div class="prevention-icon">
+          <i class="fas fa-running"></i>
+        </div>
+        <h3>नियमित व्यायाम</h3>
+        <p>प्रतिदिन कम से कम 30 मिनट की मध्यम शारीरिक गतिविधि करें। यह रक्तचाप और कोलेस्ट्रॉल को नियंत्रित रखने में मदद करता है।</p>
+      </div>
+      
+      <div class="prevention-card">
+        <div class="prevention-icon">
+          <i class="fas fa-ban"></i>
+        </div>
+        <h3>धूम्रपान छोड़ें</h3>
+        <p>धूम्रपान हृदय रोग के प्रमुख जोखिम कारकों में से एक है। धूम्रपान छोड़ने से हार्ट अटैक का खतरा कम होता है।</p>
+      </div>
+      
+      <div class="prevention-card">
+        <div class="prevention-icon">
+          <i class="fas fa-weight"></i>
+        </div>
+        <h3>वजन प्रबंधन</h3>
+        <p>स्वस्थ शरीर के वजन को बनाए रखें। अतिरिक्त वजन हृदय पर दबाव डालता है और अन्य जोखिम कारकों को बढ़ाता है।</p>
+      </div>
+      
+      <div class="prevention-card">
+        <div class="prevention-icon">
+          <i class="fas fa-tint"></i>
+        </div>
+        <h3>रक्तचाप नियंत्रण</h3>
+        <p>नियमित रूप से रक्तचाप की जांच करें और इसे नियंत्रित रखने के लिए आवश्यक कदम उठाएं।</p>
+      </div>
+      
+      <div class="prevention-card">
+        <div class="prevention-icon">
+          <i class="fas fa-heartbeat"></i>
+        </div>
+        <h3>तनाव प्रबंधन</h3>
+        <p>तनाव हृदय रोग के जोखिम को बढ़ा सकता है। योग, ध्यान और अन्य विश्राम तकनीकों का अभ्यास करें।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Emergency Section -->
+<section id="emergency" class="emergency-section">
+  <div class="container">
+    <h2>आपातकालीन स्थिति में क्या करें</h2>
+    <p>यदि आपको या आपके आसपास किसी को हार्ट अटैक के लक्षण दिखाई देते हैं, तो तुरंत कार्रवाई करें। हर मिनट मायने रखता है।</p>
     
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if(targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if(targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
+    <div class="emergency-numbers">
+      <div class="emergency-number">
+        <h3>एम्बुलेंस</h3>
+        <p>102</p>
+      </div>
+      <div class="emergency-number">
+        <h3>आपातकालीन सेवाएं</h3>
+        <p>112</p>
+      </div>
+      <div class="emergency-number">
+        <h3>हेल्पलाइन</h3>
+        <p>108</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>HealthCare</h3>
+        <p>आपकी सेहत हमारी प्राथमिकता। हम हृदय स्वास्थ्य और समग्र कल्याण के बारे में जागरूकता बढ़ाने के लिए प्रतिबद्ध हैं।</p>
+      </div>
+      
+      <div class="footer-column">
+        <h3>त्वरित लिंक</h3>
+        <ul class="footer-links">
+          <li><a href="#home" (click)="closeMenu()">होम</a></li>
+          <li><a href="#first-aid" (click)="closeMenu()">हार्ट अटैक के कदम</a></li>
+          <li><a href="#symptoms" (click)="closeMenu()">लक्षण</a></li>
+          <li><a href="#causes" (click)="closeMenu()">कारण</a></li>
+          <li><a href="#prevention" (click)="closeMenu()">रोकथाम</a></li>
+        </ul>
+      </div>
+      
+      <!-- <div class="footer-column">
+        <h3>संपर्क जानकारी</h3>
+        <ul class="footer-links">
+          <li><i class="fas fa-map-marker-alt"></i> 123 स्वास्थ्य मार्ग, नई दिल्ली</li>
+          <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+          <li><i class="fas fa-envelope"></i> info@healthcare.com</li>
+        </ul>
+      </div> -->
+    </div>
     
-    // Back to top button visibility
-    window.addEventListener('scroll', function() {
-      const backToTopButton = document.querySelector('.back-to-top');
-      if (window.pageYOffset > 300) {
-        backToTopButton.style.display = 'flex';
-      } else {
-        backToTopButton.style.display = 'none';
-      }
-    });
-  </script>
-</body>
-</html>
+    <div class="copyright">
+      <p>&copy; 2025 HealthCare. सर्वाधिकार सुरक्षित।</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top Button -->
+<a href="#home" class="back-to-top">
+  <i class="fas fa-arrow-up"></i>
+</a>
