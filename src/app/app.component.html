@@ -1,1 +1,203 @@
-<app-home></app-home>
+<!-- Navbar -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top shadow">
+  <div class="container">
+    <a class="navbar-brand fw-bold" routerLink="/">
+      <i class="fas fa-heartbeat me-2"></i>HealthCare
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/" fragment="home" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            होम
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/" fragment="first-aid" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            हार्ट अटैक के कदम
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/" fragment="symptoms" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            लक्षण
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/" fragment="causes" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            कारण
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/" fragment="prevention" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            रोकथाम
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/" fragment="emergency" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            आपातकालीन
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+  <div class="container h-100 d-flex align-items-center">
+    <div class="hero-content text-center text-white">
+      <h1 class="display-4 fw-bold mb-4">आपकी सेहत हमारी प्राथमिकता</h1>
+      <p class="lead mb-4">हार्ट अटैक और अन्य स्वास्थ्य समस्याओं के लिए जानकारी प्राप्त करें</p>
+      <a routerLink="/" fragment="first-aid" class="btn btn-danger btn-lg px-4">हार्ट अटैक जानकारी प्राप्त करें</a>
+    </div>
+  </div>
+</section>
+
+<!-- First Aid Section -->
+<section id="first-aid" class="py-5">
+  <div class="container">
+    <div class="section-header text-center mb-5">
+      <h2 class="text-danger mb-3">हार्ट अटैक आने पर तुरंत उठाने वाले कदम</h2>
+      <p class="text-muted">दिल का दौरा (हार्ट अटैक) आने पर तुरंत कार्रवाई करना जीवन बचा सकता है।</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4" *ngFor="let step of firstAidSteps; let i = index">
+        <div class="card h-100 border-top-0 border-top-danger border-danger shadow-sm">
+          <div class="card-body">
+            <div class="step-number bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 40px; height: 40px;">
+              {{i+1}}
+            </div>
+            <h5 class="card-title text-danger">{{step.title}}</h5>
+            <p class="card-text">{{step.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Symptoms Section -->
+<section id="symptoms" class="py-5 bg-light">
+  <div class="container">
+    <div class="section-header text-center mb-5">
+      <h2 class="text-danger mb-3">हार्ट अटैक के लक्षण</h2>
+      <p class="text-muted">हार्ट अटैक के विभिन्न लक्षणों को पहचानना महत्वपूर्ण है। याद रखें, हर व्यक्ति में अलग-अलग लक्षण हो सकते हैं।</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4" *ngFor="let symptom of symptoms">
+        <div class="card h-100 text-center shadow-sm">
+          <div class="card-body">
+            <div class="symptom-icon text-danger mb-3">
+              <i [class]="symptom.icon + ' fa-3x'"></i>
+            </div>
+            <h5 class="card-title text-danger">{{symptom.title}}</h5>
+            <p class="card-text">{{symptom.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Causes Section -->
+<section id="causes" class="py-5">
+  <div class="container">
+    <div class="section-header text-center mb-5">
+      <h2 class="text-danger mb-3">हार्ट अटैक के मुख्य कारण</h2>
+      <p class="text-muted">हार्ट अटैक के विभिन्न कारणों को समझना इसके जोखिम को कम करने में मदद कर सकता है।</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-6" *ngFor="let cause of causes">
+        <div class="d-flex">
+          <div class="cause-icon bg-light text-danger rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 60px; height: 60px;">
+            <i [class]="cause.icon"></i>
+          </div>
+          <div>
+            <h5 class="text-danger">{{cause.title}}</h5>
+            <p class="mb-0">{{cause.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Prevention Section -->
+<section id="prevention" class="py-5 bg-light">
+  <div class="container">
+    <div class="section-header text-center mb-5">
+      <h2 class="text-danger mb-3">हार्ट अटैक की रोकथाम</h2>
+      <p class="text-muted">जीवनशैली में सकारात्मक बदलाव करके हार्ट अटैक के जोखिम को काफी हद तक कम किया जा सकता है।</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4" *ngFor="let prevention of preventions">
+        <div class="card h-100 text-center shadow-sm">
+          <div class="card-body">
+            <div class="prevention-icon text-danger mb-3">
+              <i [class]="prevention.icon + ' fa-2x'"></i>
+            </div>
+            <h5 class="card-title text-danger">{{prevention.title}}</h5>
+            <p class="card-text">{{prevention.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Emergency Section -->
+<section id="emergency" class="py-5 bg-danger text-white">
+  <div class="container text-center">
+    <h2 class="mb-4">आपातकालीन स्थिति में क्या करें</h2>
+    <p class="mb-5">यदि आपको या आपके आसपास किसी को हार्ट अटैक के लक्षण दिखाई देते हैं, तो तुरंत कार्रवाई करें। हर मिनट मायने रखता है।</p>
+    
+    <div class="row justify-content-center">
+      <div class="col-md-4 mb-3" *ngFor="let number of emergencyNumbers">
+        <div class="bg-light bg-opacity-10 p-4 rounded">
+          <h4>{{number.title}}</h4>
+          <p class="h3 mb-0 fw-bold">{{number.number}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <h4 class="text-danger mb-3">HealthCare</h4>
+        <p>आपकी सेहत हमारी प्राथमिकता। हम हृदय स्वास्थ्य और समग्र कल्याण के बारे में जागरूकता बढ़ाने के लिए प्रतिबद्ध हैं।</p>
+      </div>
+      
+      <div class="col-md-4 mb-4">
+        <h4 class="text-danger mb-3">त्वरित लिंक</h4>
+        <ul class="list-unstyled">
+          <li><a routerLink="/" fragment="home" class="text-light text-decoration-none">होम</a></li>
+          <li><a routerLink="/" fragment="first-aid" class="text-light text-decoration-none">हार्ट अटैक के कदम</a></li>
+          <li><a routerLink="/" fragment="symptoms" class="text-light text-decoration-none">लक्षण</a></li>
+          <li><a routerLink="/" fragment="causes" class="text-light text-decoration-none">कारण</a></li>
+          <li><a routerLink="/" fragment="prevention" class="text-light text-decoration-none">रोकथाम</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="text-center pt-4 border-top border-secondary">
+      <p>&copy; 2025 HealthCare. सर्वाधिकार सुरक्षित।</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top Button -->
+<a (click)="scrollToTop()" class="back-to-top btn btn-danger rounded-circle position-fixed" style="bottom: 30px; right: 30px; width: 50px; height: 50px; display: none; cursor: pointer;">
+  <i class="fas fa-arrow-up"></i>
+</a>

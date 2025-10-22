@@ -1,10 +1,229 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'HealthCare';
+  isNavbarOpen = false;
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    // Handle fragment scrolling
+    this.router.events.subscribe(() => {
+      if (this.router.url.includes('#')) {
+        setTimeout(() => {
+          this.scrollToFragment();
+        }, 100);
+      }
+    });
+  }
+
+  // Toggle navbar for mobile
+  toggleNavbar() {
+    this.isNavbarOpen = !this.isNavbarOpen;
+  }
+
+  // Close navbar when link is clicked
+  closeNavbar() {
+    this.isNavbarOpen = false;
+  }
+
+  scrollToFragment() {
+    const fragment = this.router.url.split('#')[1];
+    if (fragment) {
+      const element = document.getElementById(fragment);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Back to top button visibility
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const backToTopButton = document.querySelector('.back-to-top') as HTMLElement;
+    if (window.pageYOffset > 300) {
+      backToTopButton.style.display = 'flex';
+    } else {
+      backToTopButton.style.display = 'none';
+    }
+  }
+
+  // Close navbar when clicking outside on mobile
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const navbar = document.getElementById('navbarNav');
+    const toggleButton = document.querySelector('.navbar-toggler');
+    
+    if (this.isNavbarOpen && 
+        !(event.target as Element).closest('#navbarNav') && 
+        !(event.target as Element).closest('.navbar-toggler')) {
+      this.closeNavbar();
+    }
+  }
+
+  // First Aid Steps Data
+  firstAidSteps = [
+    {
+      title: 'शांत रहें और तुरंत मदद लें',
+      description: 'सबसे पहले शांत रहें और घबराने की कोशिश न करें। तुरंत एम्बुलेंस या डॉक्टर को कॉल करें। आपातकालीन नंबर 102 या 112 पर कॉल करें।'
+    },
+    {
+      title: 'पीड़ित को आरामदायक स्थिति में रखें',
+      description: 'मरीज को आराम से बैठाएं या लेटाएं। सिर और कंधों को थोड़ा ऊपर रखें और पैरों को नीचे रखें। तंग कपड़े ढीले करें ताकि सांस लेने में आसानी हो।'
+    },
+    {
+      title: 'एस्पिरिन दें (अगर उपलब्ध हो)',
+      description: 'अगर मरीज होश में है और चबा सकता है, तो एस्पिरिन की गोली (300mg) दी जा सकती है। यह खून को पतला करके थक्के बनने से रोकती है।'
+    },
+    {
+      title: 'सीपीआर (CPR) शुरू करें',
+      description: 'अगर पीड़ित सांस नहीं ले रहा है या होश में नहीं है, तो तुरंत CPR शुरू करें। 30 छाती दबाने और 2 सांस देने का चक्र दोहराएं।'
+    },
+    {
+      title: 'चिकित्सा सहायता आने तक मरीज को नजर में रखें',
+      description: 'मरीज को हमेशा नजर में रखें और मदद आने तक CPR जारी रखें। मरीज की नब्ज और सांस की जांच करते रहें।'
+    },
+    {
+      title: 'ऑटोमेटेड एक्सटर्नल डिफिब्रिलेटर (AED) का उपयोग',
+      description: 'अगर AED उपलब्ध है, तो उसका उपयोग करें। यह उपकरण दिल की धड़कन को सामान्य करने में मदद कर सकता है।'
+    }
+  ];
+
+  // Symptoms Data
+  symptoms = [
+    {
+      icon: 'fas fa-heart',
+      title: 'सीने में दर्द या बेचैनी',
+      description: 'सीने के बीच में दबाव, जकड़न, भारीपन या दर्द महसूस होना जो कुछ मिनटों से अधिक रहे या आए-जाए।'
+    },
+    {
+      icon: 'fas fa-lungs',
+      title: 'सांस लेने में तकलीफ',
+      description: 'सीने में दर्द के साथ या बिना सांस लेने में कठिनाई होना। यह आराम करते समय या थोड़ी सी शारीरिक गतिविधि के साथ हो सकता है।'
+    },
+    {
+      icon: 'fas fa-dizzy',
+      title: 'चक्कर आना या बेहोशी',
+      description: 'अचानक चक्कर आना, हल्का सिर महसूस होना या बेहोश हो जाना। यह दिल के कमजोर पंप करने का संकेत हो सकता है।'
+    },
+    {
+      icon: 'fas fa-tint',
+      title: 'ठंडा पसीना आना',
+      description: 'बिना किसी स्पष्ट कारण के अचानक ठंडा पसीना आना, जो अक्सर सीने में दर्द के साथ होता है।'
+    },
+    {
+      icon: 'fas fa-hand-sparkles',
+      title: 'बांह, पीठ, गर्दन या जबड़े में दर्द',
+      description: 'दर्द या बेचैनी जो बाएं या दाएं कंधे, बाजू, पीठ, गर्दन, जबड़े या पेट के ऊपरी हिस्से में फैल सकती है।'
+    },
+    {
+      icon: 'fas fa-stomach',
+      title: 'जी मिचलाना या उल्टी',
+      description: 'अचानक जी मिचलाना, अपच, या उल्टी होना, विशेष रूप से महिलाओं में यह एक सामान्य लक्षण है।'
+    }
+  ];
+
+  // Causes Data
+  causes = [
+    {
+      icon: 'fas fa-artery',
+      title: 'धमनियों में रुकावट (Atherosclerosis)',
+      description: 'कोलेस्ट्रॉल, वसा और अन्य पदार्थों से बना प्लाक जमने से धमनियाँ संकुचित होती हैं और रक्त प्रवाह बाधित होता है।'
+    },
+    {
+      icon: 'fas fa-tint',
+      title: 'रक्त का थक्का (Blood Clot)',
+      description: 'प्लाक टूटने से खून का थक्का बन सकता है जो धमनी को पूरी तरह से अवरुद्ध कर सकता है।'
+    },
+    {
+      icon: 'fas fa-heartbeat',
+      title: 'हाई ब्लड प्रेशर (High Blood Pressure)',
+      description: 'लंबे समय तक उच्च ब्लड प्रेशर से धमनियों की दीवारें क्षतिग्रस्त होती हैं और दिल पर दबाव बढ़ता है।'
+    },
+    {
+      icon: 'fas fa-chart-line',
+      title: 'कोलेस्ट्रॉल का बढ़ना (High Cholesterol)',
+      description: 'LDL (खराब कोलेस्ट्रॉल) बढ़ने से धमनियों में प्लाक जमने का खतरा बढ़ जाता है।'
+    },
+    {
+      icon: 'fas fa-smoking',
+      title: 'धूम्रपान (Smoking)',
+      description: 'धमनियों को नुकसान पहुंचाता है, रक्तचाप बढ़ाता है और खून के थक्के बनने का खतरा बढ़ाता है।'
+    },
+    {
+      icon: 'fas fa-syringe',
+      title: 'मधुमेह (Diabetes)',
+      description: 'उच्च रक्त शर्करा धमनियों की दीवार को नुकसान पहुंचाती है और हृदय रोग का खतरा बढ़ाती है।'
+    },
+    {
+      icon: 'fas fa-weight',
+      title: 'मोटापा (Obesity)',
+      description: 'अतिरिक्त वजन हृदय पर दबाव डालता है और कोलेस्ट्रॉल, रक्तचाप और मधुमेह के जोखिम को बढ़ाता है।'
+    },
+    {
+      icon: 'fas fa-dna',
+      title: 'पारिवारिक इतिहास (Family History)',
+      description: 'यदि परिवार में हृदय रोग का इतिहास है, तो हार्ट अटैक का जोखिम बढ़ सकता है।'
+    }
+  ];
+
+  // Prevention Data
+  preventions = [
+    {
+      icon: 'fas fa-apple-alt',
+      title: 'स्वस्थ आहार',
+      description: 'फल, सब्जियां, साबुत अनाज, और कम वसा वाले डेयरी उत्पादों का सेवन करें। संतृप्त वसा, ट्रांस वसा और कोलेस्ट्रॉल सीमित करें।'
+    },
+    {
+      icon: 'fas fa-running',
+      title: 'नियमित व्यायाम',
+      description: 'प्रतिदिन कम से कम 30 मिनट की मध्यम शारीरिक गतिविधि करें। यह रक्तचाप और कोलेस्ट्रॉल को नियंत्रित रखने में मदद करता है।'
+    },
+    {
+      icon: 'fas fa-ban',
+      title: 'धूम्रपान छोड़ें',
+      description: 'धूम्रपान हृदय रोग के प्रमुख जोखिम कारकों में से एक है। धूम्रपान छोड़ने से हार्ट अटैक का खतरा कम होता है।'
+    },
+    {
+      icon: 'fas fa-weight',
+      title: 'वजन प्रबंधन',
+      description: 'स्वस्थ शरीर के वजन को बनाए रखें। अतिरिक्त वजन हृदय पर दबाव डालता है और अन्य जोखिम कारकों को बढ़ाता है।'
+    },
+    {
+      icon: 'fas fa-tint',
+      title: 'रक्तचाप नियंत्रण',
+      description: 'नियमित रूप से रक्तचाप की जांच करें और इसे नियंत्रित रखने के लिए आवश्यक कदम उठाएं।'
+    },
+    {
+      icon: 'fas fa-heartbeat',
+      title: 'तनाव प्रबंधन',
+      description: 'तनाव हृदय रोग के जोखिम को बढ़ा सकता है। योग, ध्यान और अन्य विश्राम तकनीकों का अभ्यास करें।'
+    }
+  ];
+
+  // Emergency Numbers
+  emergencyNumbers = [
+    {
+      title: 'एम्बुलेंस',
+      number: '102'
+    },
+    {
+      title: 'आपातकालीन सेवाएं',
+      number: '112'
+    },
+    {
+      title: 'हेल्पलाइन',
+      number: '108'
+    }
+  ];
 }
